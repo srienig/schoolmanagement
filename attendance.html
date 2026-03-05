@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance - SchoolSync</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            sidebar: '#1e293b', // Dark Slate
+                            active: '#10b981', // Emerald 500
+                            hover: '#334155',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 flex h-screen overflow-hidden font-sans">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-900 text-gray-300 flex flex-col transition-all duration-300">
+        <div class="h-16 flex items-center px-6 border-b border-slate-800">
+            <span class="text-xl font-bold text-white flex items-center gap-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332-4.5 1.253">
+                    </path>
+                </svg>
+                SMS
+            </span>
+        </div>
+
+        <nav class="flex-1 px-3 py-6 space-y-1">
+            <a href="dashboard.html"
+                class="flex items-center px-4 py-3 hover:bg-slate-800 hover:text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                    </path>
+                </svg>
+                Dashboard
+            </a>
+            <a href="students.html"
+                class="flex items-center px-4 py-3 hover:bg-slate-800 hover:text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+                Students
+            </a>
+            <a href="attendance.html"
+                class="flex items-center px-4 py-3 bg-emerald-600 text-white rounded-lg font-medium transition-colors shadow-lg shadow-emerald-900/20">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
+                    </path>
+                </svg>
+                Attendance
+            </a>
+            <a href="reports.html"
+                class="flex items-center px-4 py-3 hover:bg-slate-800 hover:text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                    </path>
+                </svg>
+                Reports
+            </a>
+            <a href="register.html"
+                class="flex items-center px-4 py-3 hover:bg-slate-800 hover:text-white rounded-lg font-medium transition-colors">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                </svg>
+                Register
+            </a>
+            <div class="pt-4 mt-4 border-t border-slate-800">
+                <button onclick="Storage.logout()"
+                    class="flex items-center px-4 py-2 text-red-400 hover:bg-red-900/20 hover:text-red-300 rounded-lg w-full transition-colors font-medium text-sm">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                        </path>
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-y-auto">
+        <!-- Topbar -->
+        <header
+            class="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-8 sticky top-0 z-10 w-full">
+            <h1 class="text-2xl font-bold text-gray-800">Attendance</h1>
+            <div class="h-8 w-8 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 font-bold">
+                A
+            </div>
+        </header>
+
+        <div class="p-8 max-w-5xl mx-auto w-full">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                <div class="flex flex-wrap items-center gap-4">
+                    <div class="flex items-center space-x-3">
+                        <label class="text-gray-600 font-medium">Date:</label>
+                        <input type="date" id="attendanceDate"
+                            class="border border-gray-200 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500 outline-none shadow-sm">
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <label class="text-gray-600 font-medium">Class:</label>
+                        <select id="classFilter"
+                            class="border border-gray-200 rounded-lg px-4 py-2 focus:ring-brand-500 focus:border-brand-500 outline-none shadow-sm min-w-[150px]">
+                            <option value="all">All Classes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button onclick="markAll('Present')"
+                        class="bg-green-50 text-green-700 px-4 py-2 rounded-lg font-medium hover:bg-green-100 transition shadow-sm border border-green-200 text-sm md:text-base">Mark
+                        All Present</button>
+                    <button onclick="saveAttendance()"
+                        class="bg-brand-600 hover:bg-brand-700 text-green px-6 py-2 rounded-lg font-medium transition shadow-lg shadow-brand-500/30 text-sm md:text-base">Save
+                        Attendance</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-50 text-gray-500 text-sm">
+                        <tr>
+                            <th class="px-6 py-4 font-medium">Student ID</th>
+                            <th class="px-6 py-4 font-medium">Name</th>
+                            <th class="px-6 py-4 font-medium">Grade</th>
+                            <th class="px-6 py-4 font-medium text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceList" class="divide-y divide-gray-100 text-gray-700">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="noStudentsMessage"
+                class="hidden mt-4 p-8 text-center bg-gray-50 text-gray-500 rounded-xl border border-gray-200 border-dashed">
+                No students found for the selected class.
+            </div>
+
+            <div id="saveMessage" class="hidden mt-4 p-4 bg-green-50 text-green-700 rounded-lg border border-green-200">
+                Attendance saved successfully!
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Check authentication
+        if (!Storage.isLoggedIn()) {
+            window.location.href = 'login.html';
+        }
+
+        const currentStatus = {};
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set today's date
+            document.getElementById('attendanceDate').valueAsDate = new Date();
+
+            populateClassFilter();
+            renderAttendanceTable();
+            loadExistingAttendance();
+        });
+
+        document.getElementById('attendanceDate').addEventListener('change', loadExistingAttendance);
+        document.getElementById('classFilter').addEventListener('change', renderAttendanceTable);
+
+        function populateClassFilter() {
+            const students = Storage.getStudents();
+            const classes = [...new Set(students.map(s => `${s.grade}-${s.section}`))].sort();
+            const filter = document.getElementById('classFilter');
+
+            classes.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = `Class ${c}`;
+                filter.appendChild(opt);
+            });
+        }
+
+        function renderAttendanceTable() {
+            const students = Storage.getStudents();
+            const classFilter = document.getElementById('classFilter').value;
+            const list = document.getElementById('attendanceList');
+            const noStudentsMsg = document.getElementById('noStudentsMessage');
+
+            list.innerHTML = '';
+
+            const filteredStudents = classFilter === 'all'
+                ? students
+                : students.filter(s => `${s.grade}-${s.section}` === classFilter);
+
+            if (filteredStudents.length === 0) {
+                noStudentsMsg.classList.remove('hidden');
+                return;
+            } else {
+                noStudentsMsg.classList.add('hidden');
+            }
+
+            filteredStudents.forEach(student => {
+                // Initialize status if not present
+                if (!currentStatus[student.id]) {
+                    currentStatus[student.id] = 'Present';
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gray-50 transition';
+                tr.innerHTML = `
+                    <td class="px-6 py-4 font-medium text-gray-900">${student.id}</td>
+                    <td class="px-6 py-4">${student.name}</td>
+                    <td class="px-6 py-4 text-gray-500">${student.grade}-${student.section}</td>
+                    <td class="px-6 py-4 text-center">
+                        <div class="inline-flex bg-gray-100 rounded-lg p-1 space-x-1">
+                            <button onclick="setStatus('${student.id}', 'Present')" id="btn-${student.id}-Present" class="px-3 py-1.5 rounded-md text-sm font-medium transition-all">Present</button>
+                            <button onclick="setStatus('${student.id}', 'Absent')" id="btn-${student.id}-Absent" class="px-3 py-1.5 rounded-md text-sm font-medium transition-all">Absent</button>
+                            <button onclick="setStatus('${student.id}', 'Late')" id="btn-${student.id}-Late" class="px-3 py-1.5 rounded-md text-sm font-medium transition-all">Late</button>
+                        </div>
+                    </td>
+                `;
+                list.appendChild(tr);
+                updateButtonUI(student.id, currentStatus[student.id]);
+            });
+        }
+
+        function setStatus(id, status) {
+            currentStatus[id] = status;
+            updateButtonUI(id, status);
+        }
+
+        function updateButtonUI(id, status) {
+            ['Present', 'Absent', 'Late'].forEach(s => {
+                const btn = document.getElementById(`btn-${id}-${s}`);
+                if (btn) {
+                    if (s === status) {
+                        if (status === 'Present') btn.className = "px-3 py-1.5 rounded-md text-sm font-medium bg-green-500 text-white shadow-sm transition-all";
+                        else if (status === 'Absent') btn.className = "px-3 py-1.5 rounded-md text-sm font-medium bg-red-500 text-white shadow-sm transition-all";
+                        else btn.className = "px-3 py-1.5 rounded-md text-sm font-medium bg-yellow-500 text-white shadow-sm transition-all";
+                    } else {
+                        btn.className = "px-3 py-1.5 rounded-md text-sm font-medium text-gray-500 hover:bg-white hover:shadow-sm transition-all";
+                    }
+                }
+            });
+        }
+
+        function markAll(status) {
+            const classFilter = document.getElementById('classFilter').value;
+            const students = Storage.getStudents();
+            const filteredStudents = classFilter === 'all'
+                ? students
+                : students.filter(s => `${s.grade}-${s.section}` === classFilter);
+
+            filteredStudents.forEach(s => setStatus(s.id, status));
+        }
+
+        function saveAttendance() {
+            const date = document.getElementById('attendanceDate').value;
+            const students = Storage.getStudents(); // We save all student statuses that we have in currentStatus
+
+            // To ensure we have something for every student, map through all
+            const records = students.map(s => ({
+                studentId: s.id,
+                name: s.name,
+                status: currentStatus[s.id] || 'Present'
+            }));
+
+            Storage.saveAttendance(date, records);
+
+            const msg = document.getElementById('saveMessage');
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 3000);
+        }
+
+        function loadExistingAttendance() {
+            const date = document.getElementById('attendanceDate').value;
+            const allAttendance = Storage.getAttendance();
+            const records = allAttendance[date];
+
+            if (records) {
+                records.forEach(r => {
+                    currentStatus[r.studentId] = r.status;
+                });
+            } else {
+                // If no record for this date, reset all to Present
+                const students = Storage.getStudents();
+                students.forEach(s => {
+                    currentStatus[s.id] = 'Present';
+                });
+            }
+            renderAttendanceTable();
+        }
+    </script>
+</body>
+
+</html>
